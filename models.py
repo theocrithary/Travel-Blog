@@ -9,6 +9,7 @@
 # Import modules required for app
 import os
 import boto
+import json
 from pymongo import MongoClient
 from config import ecs_test_drive
 
