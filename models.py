@@ -11,6 +11,7 @@ import os
 import boto
 import json
 from pymongo import MongoClient
+from werkzeug import secure_filename
 from config import ecs_test_drive
 
 # Check if running in Pivotal Web Services with MongoDB service bound
@@ -33,7 +34,7 @@ def insert_blog(request):
     title = request.form['title']
     category = request.form['category']
     comments = request.form['comments']
-    photo_filename = request.files['photo'].filename
+    photo_filename = secure_filename(request.files['photo'].filename)
     photo_url = "http://" + ecs_test_drive['ecs_access_key_id'].split('@')[0] + ".public.ecstestdrive.com/" + ecs_test_drive['bucket_name'] + "/" + photo_filename
 
     db.posts.insert_one({'title':title, 'category':category,'comments':comments, 'photo':photo_url})
@@ -52,11 +53,12 @@ def upload_photo(file):
     session = boto.connect_s3(ecs_access_key_id, ecs_secret_key, host='object.ecstestdrive.com')  
     ## Get hold of your bucket
     bucket = session.get_bucket(bucket_name)
+    filename = secure_filename(file.filename)
 
-    file.save(os.path.join("uploads", file.filename))
-    key = bucket.new_key(file.filename)
-    key.set_contents_from_filename("uploads/" + file.filename)
+    file.save(os.path.join("uploads", filename))
+    key = bucket.new_key(filename)
+    key.set_contents_from_filename("uploads/" + filename)
     key.set_acl('public-read')
-    os.remove("uploads/" + file.filename)
+    os.remove("uploads/" + filename)
 
 
