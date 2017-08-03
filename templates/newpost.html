@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="inner cover">
+  <h2 class="cover-heading">New blog entry</h2>
+	<form method="post" action="/newpost" enctype="multipart/form-data">
+		<div class="form-group">
+			<input type="title" class="form-control" placeholder="Title" name="title">
+		</div>
+		<select class="form-control" name="category">
+			<option value="" disabled selected>Select a category</option>
+			<option value="travel">Travel</option>
+			<option value="calista">Calista</option>
+			<option value="events">Events</option>
+		</select><br>
+		<textarea class="form-control" name="comments" rows="3" placeholder="Comments"></textarea><br>
+		<div class="form-group">
+			<input type="file" name="photo">
+		</div>
+		<input class="btn btn-default" type="submit" value="Submit">
+	</form>
+</div>
+{% endblock %}

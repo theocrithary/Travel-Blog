@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="static/favicon.ico">
+
+    <title>Family Blog</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="static/custom.css">
+
+  </head>
+
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Family Blog</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  {% if url == 'home' %}
+                    <li class="active"><a href="/">Home</a></li>
+                  {% else %} 
+                    <li><a href="/">Home</a></li>
+                  {% endif %}
+                  
+                  {% if url == 'travel' %}
+                    <li class="active"><a href="/travel">Travel</a></li>
+                  {% else %} 
+                    <li><a href="/travel">Travel</a></li>
+                  {% endif %}
+                  
+                  {% if url == 'calista' %}
+                    <li class="active"><a href="/calista">Calista</a></li>
+                  {% else %} 
+                    <li><a href="/calista">Calista</a></li>
+                  {% endif %}
+                  
+                  {% if url == 'events' %}
+                    <li class="active"><a href="/events">Events</a></li>
+                  {% else %} 
+                    <li><a href="/events">Events</a></li>
+                  {% endif %}
+                  
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          {% block content %}{% endblock %}
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>&copy; Theo Crithary 2017.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  </body>
+</html>
