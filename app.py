@@ -23,7 +23,7 @@ def home():
 @app.route('/newpost', methods=['GET', 'POST'])
 def newpost():
     if request.method == 'POST':
-    	upload_photo(request.files['photo'])								# Call function in 'models.py' to upload photo to ECS
+    	upload_photo(request.files['photo'])			# Call function in 'models.py' to upload photo to ECS
     	insert_blog(request)							# Call function in 'models.py' to process the database transaction
     	return render_template('submitpost.html')
     else:
@@ -43,6 +43,10 @@ def calista():
 def events():
     events_posts = get_blog_posts("events")				# Call function in 'models.py' to process the database transaction
     return render_template('events.html',blog_posts=events_posts,url='events')
+
+@app.route('/photo/<path:photo>')
+def photo(photo):
+    return render_template('photo.html',photo=photo)
 
 ##### Run the Flask instance, browse to http://<< Host IP or URL >>:5000 #####
 if __name__ == "__main__":

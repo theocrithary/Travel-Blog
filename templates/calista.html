@@ -4,10 +4,10 @@
     <div class="row">
     {% for post in blog_posts %}
         <div class="col-xs-6 col-md-3">{{ post['title'] }}
-            <a href="{{ post['photo'] }}" class="thumbnail"><img src="{{ post['photo'] }}"></a>
+            <a href="{{ url_for('photo',photo=post['photo']) }}" class="thumbnail"><img src="{{ post['thumb'] }}" class="img-responsive"></a>
             {{ post['comments'] }}
-        </div>
-    {% endfor %}
+    	</div>
+	{% endfor %}
     </div>
 </div>
 {% endblock %}
